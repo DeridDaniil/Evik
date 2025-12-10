@@ -75,6 +75,34 @@ const ForumPage = () => {
   const [showForm, setShowForm] = useState(false);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
 
+  const forumSections = [
+    {
+      title: 'Истерики и сильные эмоции',
+      description: 'Как реагировать, что помогает, что усиливает напряжение.',
+      icon: '😤',
+    },
+    {
+      title: 'Границы и дисциплина',
+      description: 'Как сохранять спокойствие и последовательность, устанавливать правила и договоренности.',
+      icon: '🎯',
+    },
+    {
+      title: 'Сон, питание, режим и эмоции',
+      description: 'Как биологические факторы связаны с поведением и настроением ребенка.',
+      icon: '😴',
+    },
+    {
+      title: 'Детский сад и адаптация',
+      description: 'Как поддержать ребенка в новых социальных условиях.',
+      icon: '🏫',
+    },
+    {
+      title: 'Игры и упражнения для развития саморегуляции',
+      description: 'Обменивайтесь идеями, находите полезные практики.',
+      icon: '🎮',
+    },
+  ];
+
   const categories = [
     'Все вопросы',
     'Саморегуляция',
@@ -112,19 +140,210 @@ const ForumPage = () => {
 
   return (
     <main className="content-wrapper">
-      {/* Hero Section */}
+      {/* Welcome Section */}
       <section className="content-block blockstyle-soft">
-        <div className="content-container">
-          <h1 className="content-h1">Форум для родителей</h1>
-          <p className="content-paragraph">
-            Задавайте вопросы и получайте ответы от профессиональных психологов. Делитесь опытом с другими родителями.
+        <div className="content-container" style={{ maxWidth: '900px', margin: '0 auto' }}>
+          <h1 className="content-h1" style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+            Добро пожаловать в пространство поддержки родителей!
+          </h1>
+          <div style={{
+            fontSize: '1.125rem',
+            lineHeight: '1.8',
+            color: 'var(--text-secondary)',
+            textAlign: 'center',
+          }}>
+            <p style={{ marginBottom: '1rem' }}>
+              Здесь вы можете обсудить любые вопросы, связанные с эмоциональной
+              регуляцией дошкольников, поделиться своим опытом и получить
+              поддержку от других родителей и специалистов.
+            </p>
+            <p>
+              Наше сообщество создано для того, чтобы помочь вам лучше понимать
+              эмоциональные реакции ребенка и выбирать более эффективные
+              способы взаимодействия с ним.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Rules Section */}
+      <section className="content-block" style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
+        <div className="content-container" style={{ maxWidth: '900px', margin: '0 auto' }}>
+          <div style={{
+            background: 'var(--bg-card)',
+            borderRadius: 'var(--radius-lg)',
+            padding: '2rem',
+            border: '2px solid var(--accent-color)',
+            boxShadow: 'var(--shadow-md)',
+          }}>
+            <h2 style={{
+              fontSize: '1.5rem',
+              fontWeight: '700',
+              color: 'var(--text-primary)',
+              marginBottom: '1.25rem',
+              textAlign: 'center',
+            }}>
+              Правила нашего пространства
+            </h2>
+            <p style={{
+              fontSize: '1rem',
+              color: 'var(--text-secondary)',
+              lineHeight: '1.7',
+              marginBottom: '1rem',
+            }}>
+              Мы создаем безопасную среду, поэтому просим участников:
+            </p>
+            <ul style={{
+              fontSize: '1rem',
+              color: 'var(--text-secondary)',
+              lineHeight: '1.8',
+              paddingLeft: '1.5rem',
+              listStyle: 'disc',
+            }}>
+              <li>уважительно общаться друг с другом;</li>
+              <li>избегать оценочных комментариев;</li>
+              <li>не давать медицинских или психиатрических рекомендаций;</li>
+              <li>помнить, что каждый ребенок и каждая семья уникальны.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Forum Sections */}
+      <section className="content-block" style={{ paddingTop: '2rem' }}>
+        <div className="content-container" style={{ maxWidth: '1000px', margin: '0 auto' }}>
+          <h2 className="content-h2" style={{ textAlign: 'center', marginBottom: '1rem' }}>
+            Форум
+          </h2>
+          <p style={{
+            fontSize: '1rem',
+            color: 'var(--text-secondary)',
+            textAlign: 'center',
+            marginBottom: '2.5rem',
+          }}>
+            Разделы форума с обсуждениями между родителями
           </p>
-          <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '1.5rem',
+            marginBottom: '3rem',
+          }}>
+            {forumSections.map((section, index) => (
+              <div
+                key={index}
+                style={{
+                  background: 'var(--bg-card)',
+                  borderRadius: 'var(--radius-lg)',
+                  padding: '1.75rem',
+                  border: '1px solid var(--border-color)',
+                  boxShadow: 'var(--shadow-sm)',
+                  transition: 'var(--transition)',
+                  cursor: 'pointer',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-4px)';
+                  e.currentTarget.style.boxShadow = 'var(--shadow-md)';
+                  e.currentTarget.style.borderColor = 'var(--accent-color)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'var(--shadow-sm)';
+                  e.currentTarget.style.borderColor = 'var(--border-color)';
+                }}
+              >
+                <div style={{
+                  fontSize: '2.5rem',
+                  marginBottom: '1rem',
+                  textAlign: 'center',
+                }}>
+                  {section.icon}
+                </div>
+                <h3 style={{
+                  fontSize: '1.125rem',
+                  fontWeight: '700',
+                  color: 'var(--text-primary)',
+                  marginBottom: '0.75rem',
+                  textAlign: 'center',
+                  lineHeight: '1.4',
+                }}>
+                  {section.title}
+                </h3>
+                <p style={{
+                  fontSize: '0.9375rem',
+                  color: 'var(--text-secondary)',
+                  lineHeight: '1.6',
+                  textAlign: 'center',
+                }}>
+                  {section.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Ask Psychologist Section */}
+      <section className="content-block blockstyle-soft">
+        <div className="content-container" style={{ maxWidth: '900px', margin: '0 auto' }}>
+          <h2 className="content-h2" style={{ textAlign: 'center', marginBottom: '1rem' }}>
+            Спросите психолога
+          </h2>
+          <p style={{
+            fontSize: '1rem',
+            color: 'var(--text-secondary)',
+            lineHeight: '1.7',
+            textAlign: 'center',
+            marginBottom: '1.5rem',
+          }}>
+            В этом разделе вы можете задать вопрос специалисту и получить
+            короткую профессиональную рекомендацию.
+          </p>
+          <div style={{
+            background: 'var(--bg-card)',
+            borderRadius: 'var(--radius-lg)',
+            padding: '2rem',
+            border: '1px solid var(--border-color)',
+            boxShadow: 'var(--shadow-sm)',
+            marginBottom: '2rem',
+          }}>
+            <h3 style={{
+              fontSize: '1.25rem',
+              fontWeight: '700',
+              color: 'var(--text-primary)',
+              marginBottom: '1rem',
+            }}>
+              Психолог помогает разобраться:
+            </h3>
+            <ul style={{
+              fontSize: '1rem',
+              color: 'var(--text-secondary)',
+              lineHeight: '1.8',
+              paddingLeft: '1.5rem',
+              listStyle: 'disc',
+              marginBottom: '1rem',
+            }}>
+              <li>почему возникает определенная эмоциональная реакция у ребенка;</li>
+              <li>какие стратегии поведения подходят именно в вашей ситуации;</li>
+              <li>когда стоит обратиться за дополнительной консультацией.</li>
+            </ul>
+            <p style={{
+              fontSize: '0.9375rem',
+              color: 'var(--text-light)',
+              fontStyle: 'italic',
+              lineHeight: '1.6',
+            }}>
+              К каждому вопросу мы добавляем подборку полезных материалов —
+              статей, книг и упражнений.
+            </p>
+          </div>
+          <div style={{ textAlign: 'center' }}>
             <button
               onClick={() => setShowForm(!showForm)}
               className="cta-button primary"
+              style={{ fontSize: '1.125rem', padding: '1rem 2.5rem' }}
             >
-              {showForm ? '✕ Закрыть форму' : '✍️ Задать вопрос'}
+              {showForm ? '✕ Закрыть форму' : '✍️ Задать вопрос психологу'}
             </button>
           </div>
         </div>
@@ -146,9 +365,18 @@ const ForumPage = () => {
                 fontWeight: '700',
                 color: 'var(--text-primary)',
                 marginBottom: '1.5rem',
+                textAlign: 'center',
               }}>
-                Задайте ваш вопрос
+                Задайте вопрос психологу
               </h2>
+              <p style={{
+                fontSize: '1rem',
+                color: 'var(--text-secondary)',
+                textAlign: 'center',
+                marginBottom: '1.5rem',
+              }}>
+                Опишите вашу ситуацию, и специалист даст профессиональную рекомендацию
+              </p>
               <form onSubmit={handleSubmitQuestion}>
                 <div style={{ marginBottom: '1.5rem' }}>
                   <label style={{
@@ -252,9 +480,22 @@ const ForumPage = () => {
         </section>
       )}
 
-      {/* Categories Filter */}
+      {/* Questions and Answers Section */}
       <section className="content-block" style={{ paddingTop: showForm ? '2rem' : '0' }}>
         <div className="content-container">
+          <h2 className="content-h2" style={{ textAlign: 'center', marginBottom: '1rem' }}>
+            Вопросы и ответы
+          </h2>
+          <p style={{
+            fontSize: '1rem',
+            color: 'var(--text-secondary)',
+            textAlign: 'center',
+            marginBottom: '2.5rem',
+          }}>
+            Ответы психологов на вопросы родителей
+          </p>
+          
+          {/* Categories Filter */}
           <div style={{
             display: 'flex',
             gap: '0.75rem',

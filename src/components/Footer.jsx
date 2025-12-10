@@ -55,7 +55,7 @@ const Footer = () => {
         <div className="footer-bottom">
           <div className="footer-bottom-content">
             <p className="footer-copyright">
-              © 2024 ЭмоРегуляция. Все права защищены.
+              © 2025 ЭмоРегуляция. Все права защищены.
             </p>
             <div className="footer-payment">
               <span className="payment-text">Сделано с ❤️ для родителей</span>

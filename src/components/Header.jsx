@@ -48,6 +48,11 @@ const Header = () => {
                   Форум
                 </NavLink>
               </li>
+              <li>
+                <NavLink to="/for-parents" className="nav-link" onClick={closeMenu}>
+                  Для родителей
+                </NavLink>
+              </li>
             </ul>
           </nav>
 

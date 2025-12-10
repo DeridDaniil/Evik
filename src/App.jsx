@@ -7,6 +7,7 @@ import VideoLibraryPage from './pages/VideoLibraryPage';
 import InteractivePage from './pages/InteractivePage';
 import DailyActivitiesPage from './pages/DailyActivitiesPage';
 import ForumPage from './pages/ForumPage';
+import ForParentsPage from './pages/ForParentsPage';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/interactive" element={<InteractivePage />} />
         <Route path="/activities" element={<DailyActivitiesPage />} />
         <Route path="/forum" element={<ForumPage />} />
+        <Route path="/for-parents" element={<ForParentsPage />} />
       </Routes>
       <Footer />
     </>
