@@ -61,6 +61,20 @@
   transform: scale(0.95);
 }
 
+/* Отключение анимации когда модальное окно открыто */
+.floating-info-button.modal-open {
+  animation: none;
+}
+
+.floating-info-button.modal-open::before,
+.floating-info-button.modal-open::after {
+  animation: none;
+}
+
+.floating-info-button.modal-open .floating-info-icon {
+  animation: none;
+}
+
 .floating-info-icon {
   font-size: 2rem;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));

@@ -6,6 +6,24 @@ const InteractivePage = () => {
   const [selectedReaction, setSelectedReaction] = useState(null);
   const [showResult, setShowResult] = useState(false);
   const [showInfoModal, setShowInfoModal] = useState(false);
+  const [hasSeenInfo, setHasSeenInfo] = useState(false);
+
+  // Проверка sessionStorage при загрузке компонента
+  useEffect(() => {
+    const infoSeen = sessionStorage.getItem('infoModalSeen');
+    if (infoSeen === 'true') {
+      setHasSeenInfo(true);
+    }
+  }, []);
+
+  // Сохранение в sessionStorage при открытии модального окна
+  const handleOpenModal = () => {
+    setShowInfoModal(true);
+    if (!hasSeenInfo) {
+      sessionStorage.setItem('infoModalSeen', 'true');
+      setHasSeenInfo(true);
+    }
+  };
 
   // Закрытие модального окна по клавише Escape и блокировка прокрутки
   useEffect(() => {
@@ -313,8 +331,8 @@ const InteractivePage = () => {
 
       {/* Floating Info Button */}
       <button 
-        className="floating-info-button"
-        onClick={() => setShowInfoModal(true)}
+        className={`floating-info-button ${showInfoModal || hasSeenInfo ? 'modal-open' : ''}`}
+        onClick={handleOpenModal}
         aria-label="Важная информация"
       >
         <span className="floating-info-icon">💡</span>
