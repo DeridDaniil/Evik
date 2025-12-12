@@ -22,6 +22,7 @@
   justify-content: center;
   transition: all 0.3s ease;
   animation: strongPulse 1.5s ease-in-out infinite;
+  z-index: 1000;
 }
 
 .floating-info-button::before {
