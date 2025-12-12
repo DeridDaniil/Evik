@@ -1,10 +1,30 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './InteractivePage.css';
 
 const InteractivePage = () => {
   const [currentScene, setCurrentScene] = useState('start');
   const [selectedReaction, setSelectedReaction] = useState(null);
   const [showResult, setShowResult] = useState(false);
+  const [showInfoModal, setShowInfoModal] = useState(false);
+
+  // Закрытие модального окна по клавише Escape и блокировка прокрутки
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && showInfoModal) {
+        setShowInfoModal(false);
+      }
+    };
+
+    if (showInfoModal) {
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'unset';
+    };
+  }, [showInfoModal]);
 
   const scenarios = {
     start: {
@@ -291,27 +311,41 @@ const InteractivePage = () => {
         </div>
       </section>
 
-      {/* Info Notice */}
-      <section className="content-block" style={{ paddingTop: '2rem', paddingBottom: '1rem' }}>
-        <div className="content-container interactive-container">
-          <div className="info-notice">
-            <div className="info-notice-content">
-              <div className="info-notice-icon">💡</div>
-              <div>
-                <h3 className="info-notice-title">
-                  Важно помнить
-                </h3>
-                <p className="info-notice-text">
-                  Каждый ребенок уникален, и его реакции могут отличаться от представленных в игре. 
-                  Этот интерактивный тренажер создан, чтобы помочь вам как родителю лучше понять 
-                  возможные подходы к воспитанию, скоординировать свои действия и определить их направленность. 
-                  Используйте полученные знания как ориентир, адаптируя их к индивидуальным особенностям вашего ребенка.
-                </p>
-              </div>
+      {/* Floating Info Button */}
+      <button 
+        className="floating-info-button"
+        onClick={() => setShowInfoModal(true)}
+        aria-label="Важная информация"
+      >
+        <span className="floating-info-icon">💡</span>
+      </button>
+
+      {/* Info Modal */}
+      {showInfoModal && (
+        <div className="modal-overlay" onClick={() => setShowInfoModal(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button 
+              className="modal-close"
+              onClick={() => setShowInfoModal(false)}
+              aria-label="Закрыть"
+            >
+              ×
+            </button>
+            <div className="modal-header">
+              <div className="modal-icon">💡</div>
+              <h3 className="modal-title">Важно помнить</h3>
+            </div>
+            <div className="modal-body">
+              <p className="modal-text">
+                Каждый ребенок уникален, и его реакции могут отличаться от представленных в игре. 
+                Этот интерактивный тренажер создан, чтобы помочь вам как родителю лучше понять 
+                возможные подходы к воспитанию, скоординировать свои действия и определить их направленность. 
+                Используйте полученные знания как ориентир, адаптируя их к индивидуальным особенностям вашего ребенка.
+              </p>
             </div>
           </div>
         </div>
-      </section>
+      )}
 
       {/* Interactive Scene */}
       <section className="content-block" style={{ paddingTop: '1rem' }}>
