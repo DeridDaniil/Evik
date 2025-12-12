@@ -1,4 +1,13 @@
 import { useState } from 'react';
+import './VideoLibraryPage.css';
+import image1 from '../assets/images/1.jpg';
+import image2 from '../assets/images/2.jpg';
+import image3 from '../assets/images/3.jpg';
+import image4 from '../assets/images/4.jpg';
+import image5 from '../assets/images/5.jpg';
+import image6 from '../assets/images/6.jpg';
+import image7 from '../assets/images/7.jpg';
+import image8 from '../assets/images/8.jpg';
 
 const VideoLibraryPage = () => {
   const [activeCategory, setActiveCategory] = useState('все');
@@ -19,7 +28,7 @@ const VideoLibraryPage = () => {
       category: 'успокоение',
       duration: '12:30',
       description: 'Техники и методы для спокойного засыпания дошкольника',
-      thumbnail: '🌙',
+      thumbnail: image1,
     },
     {
       id: 2,
@@ -27,7 +36,7 @@ const VideoLibraryPage = () => {
       category: 'границы',
       duration: '15:45',
       description: 'Как говорить "нет" без чувства вины',
-      thumbnail: '🚪',
+      thumbnail: image2,
     },
     {
       id: 3,
@@ -35,7 +44,7 @@ const VideoLibraryPage = () => {
       category: 'похвала',
       duration: '10:20',
       description: 'Как хвалить ребенка, чтобы развивать внутреннюю мотивацию',
-      thumbnail: '🌟',
+      thumbnail: image3,
     },
     {
       id: 4,
@@ -43,7 +52,7 @@ const VideoLibraryPage = () => {
       category: 'успокоение',
       duration: '18:15',
       description: 'Пошаговая инструкция для родителей',
-      thumbnail: '🌊',
+      thumbnail: image4,
     },
     {
       id: 5,
@@ -51,7 +60,7 @@ const VideoLibraryPage = () => {
       category: 'эмоции',
       duration: '14:00',
       description: 'Учим ребенка понимать и выражать свои чувства',
-      thumbnail: '❤️',
+      thumbnail: image5,
     },
     {
       id: 6,
@@ -59,7 +68,7 @@ const VideoLibraryPage = () => {
       category: 'игры',
       duration: '16:30',
       description: 'Практические упражнения на каждый день',
-      thumbnail: '🎮',
+      thumbnail: image6,
     },
     {
       id: 7,
@@ -67,7 +76,7 @@ const VideoLibraryPage = () => {
       category: 'границы',
       duration: '13:25',
       description: 'Как научить ребенка защищать личное пространство',
-      thumbnail: '👥',
+      thumbnail: image7,
     },
     {
       id: 8,
@@ -75,12 +84,12 @@ const VideoLibraryPage = () => {
       category: 'похвала',
       duration: '11:40',
       description: 'Конструктивная обратная связь для дошкольников',
-      thumbnail: '⚖️',
+      thumbnail: image8,
     },
   ];
 
-  const filteredVideos = activeCategory === 'все' 
-    ? videos 
+  const filteredVideos = activeCategory === 'все'
+    ? videos
     : videos.filter(video => video.category === activeCategory);
 
   return (
@@ -98,152 +107,131 @@ const VideoLibraryPage = () => {
       {/* Categories */}
       <section className="content-block">
         <div className="content-container">
-          <div style={{ 
-            display: 'flex', 
-            gap: '1rem', 
-            flexWrap: 'wrap', 
-            justifyContent: 'center',
-            marginBottom: '3rem' 
-          }}>
+          <div className="video-library-categories">
             {categories.map(category => (
               <button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
-                style={{
-                  padding: '0.875rem 1.75rem',
-                  background: activeCategory === category.id 
-                    ? 'var(--accent-gradient)' 
-                    : 'var(--bg-card)',
-                  color: activeCategory === category.id 
-                    ? 'var(--text-on-accent)' 
-                    : 'var(--text-secondary)',
-                  border: activeCategory === category.id 
-                    ? 'none' 
-                    : '2px solid var(--border-color)',
-                  borderRadius: 'var(--radius-md)',
-                  fontSize: '1rem',
-                  fontWeight: '600',
-                  cursor: 'pointer',
-                  transition: 'var(--transition)',
-                  boxShadow: activeCategory === category.id 
-                    ? 'var(--shadow-md)' 
-                    : 'none',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                }}
-                onMouseEnter={(e) => {
-                  if (activeCategory !== category.id) {
-                    e.target.style.borderColor = 'var(--accent-color)';
-                    e.target.style.color = 'var(--accent-color)';
-                    e.target.style.transform = 'translateY(-2px)';
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (activeCategory !== category.id) {
-                    e.target.style.borderColor = 'var(--border-color)';
-                    e.target.style.color = 'var(--text-secondary)';
-                    e.target.style.transform = 'translateY(0)';
-                  }
-                }}
+                className={`video-library-category-btn ${activeCategory === category.id ? 'active' : ''}`}
               >
-                <span style={{ fontSize: '1.25rem' }}>{category.icon}</span>
+                <span className="video-library-category-icon">{category.icon}</span>
                 {category.name}
               </button>
             ))}
           </div>
 
           {/* Video Grid */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-            gap: '2rem',
-          }}>
+          <div className="video-library-grid">
             {filteredVideos.map(video => (
-              <div
-                key={video.id}
-                style={{
-                  background: 'var(--bg-card)',
-                  borderRadius: 'var(--radius-lg)',
-                  overflow: 'hidden',
-                  border: '1px solid var(--border-color)',
-                  transition: 'var(--transition)',
-                  cursor: 'pointer',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-8px)';
-                  e.currentTarget.style.boxShadow = 'var(--shadow-lg)';
-                  e.currentTarget.style.borderColor = 'var(--accent-color)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = 'none';
-                  e.currentTarget.style.borderColor = 'var(--border-color)';
-                }}
-              >
+              <div key={video.id} className="video-library-card">
                 {/* Thumbnail */}
-                <div style={{
-                  height: '200px',
-                  background: 'linear-gradient(135deg, var(--bg-section) 0%, var(--bg-overlay) 100%)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '4rem',
-                  position: 'relative',
-                }}>
-                  {video.thumbnail}
-                  <div style={{
-                    position: 'absolute',
-                    bottom: '1rem',
-                    right: '1rem',
-                    background: 'rgba(0, 0, 0, 0.75)',
-                    color: 'white',
-                    padding: '0.375rem 0.75rem',
-                    borderRadius: 'var(--radius-sm)',
-                    fontSize: '0.875rem',
-                    fontWeight: '600',
-                  }}>
+                <div className="video-library-thumbnail">
+                  <img
+                    src={video.thumbnail}
+                    alt={video.title}
+                    className={`video-library-thumbnail-img ${video.id === 4 ? 'video-thumbnail-top' : ''}`}
+                  />
+                  <div className="video-library-duration">
                     {video.duration}
                   </div>
                   {/* Play Button */}
-                  <div style={{
-                    position: 'absolute',
-                    width: '60px',
-                    height: '60px',
-                    background: 'var(--accent-gradient)',
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '1.5rem',
-                    color: 'white',
-                    boxShadow: 'var(--shadow-md)',
-                  }}>
+                  <div className="video-library-play-btn">
                     ▶
                   </div>
                 </div>
 
                 {/* Content */}
-                <div style={{ padding: '1.5rem' }}>
-                  <h3 style={{
-                    fontSize: '1.125rem',
-                    fontWeight: '700',
-                    color: 'var(--text-primary)',
-                    marginBottom: '0.75rem',
-                    lineHeight: '1.4',
-                  }}>
+                <div className="video-library-content">
+                  <h3 className="video-library-title">
                     {video.title}
                   </h3>
-                  <p style={{
-                    fontSize: '0.9375rem',
-                    color: 'var(--text-secondary)',
-                    lineHeight: '1.6',
-                  }}>
+                  <p className="video-library-description">
                     {video.description}
                   </p>
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Recommended Resources Section */}
+      <section className="content-block" style={{ background: 'var(--bg-light)' }}>
+        <div className="content-container">
+          <h2 className="content-h2" style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            Рекомендованные книги и ресурсы
+          </h2>
+          <p style={{ 
+            textAlign: 'center', 
+            fontSize: '1.125rem', 
+            color: 'var(--text-secondary)', 
+            marginBottom: '3rem',
+            maxWidth: '800px',
+            margin: '0 auto 3rem'
+          }}>
+            Небольшая подборка современных и доступных источников для родителей
+          </p>
+
+          <div className="resources-grid">
+            {/* Books Section */}
+            <div className="resource-card">
+              <div className="resource-icon">📚</div>
+              <h3 className="resource-title">Книги</h3>
+              <ul className="resource-list">
+                <li>
+                  <strong>Готтман Джон</strong><br />
+                  «Эмоциональный интеллект ребенка»
+                </li>
+                <li>
+                  <strong>Юлия Гиппенрейтер</strong><br />
+                  «Общаться с ребенком. Как?»
+                </li>
+                <li>
+                  <strong>Виктория Шиманская, Александра Чканикова</strong><br />
+                  «Детские страхи»
+                </li>
+                <li>
+                  <strong>Людмила Петрановская</strong><br />
+                  «Тайная опора: привязанность в жизни ребенка»
+                </li>
+                <li>
+                  <strong>Франсуаза Дольто</strong><br />
+                  «На стороне ребенка»
+                </li>
+              </ul>
+            </div>
+
+            {/* Online Resources Section */}
+            <div className="resource-card">
+              <div className="resource-icon">🌐</div>
+              <h3 className="resource-title">Онлайн-ресурсы</h3>
+              <ul className="resource-list">
+                <li>Подкасты по возрастной / детской психологии</li>
+                <li>Методические рекомендации Российского общества детских психологов</li>
+                <li>Вебинары ВОЗ по поддержке психического здоровья родителей и детей</li>
+              </ul>
+              <div style={{ marginTop: '1.5rem' }}>
+                <h4 className="resource-subtitle">Материалы по навыкам саморегуляции:</h4>
+                <ul className="resource-list">
+                  <li>Шпаргалки по техникам эмоционального коучинга</li>
+                  <li>Список спокойных игр для детей от 3-х лет</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Audio Guides Section */}
+            <div className="resource-card">
+              <div className="resource-icon">🎧</div>
+              <h3 className="resource-title">Аудио-гайды для родителей</h3>
+              <p className="resource-description">
+                Короткие записи, которые помогут в сложных моментах:
+              </p>
+              <ul className="resource-list">
+                <li>«Как говорить успокаивающим тоном»</li>
+                <li>«Как поддержать ребенка в момент истерики»</li>
+                <li>«Двухминутная техника восстановления для родителей»</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>

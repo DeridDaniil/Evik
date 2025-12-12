@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './ForumPage.css';
 
 const ForumPage = () => {
   const [questions, setQuestions] = useState([
@@ -142,17 +143,12 @@ const ForumPage = () => {
     <main className="content-wrapper">
       {/* Welcome Section */}
       <section className="content-block blockstyle-soft">
-        <div className="content-container" style={{ maxWidth: '900px', margin: '0 auto' }}>
-          <h1 className="content-h1" style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+        <div className="content-container forum-welcome">
+          <h1 className="content-h1 forum-welcome-title">
             Добро пожаловать в пространство поддержки родителей!
           </h1>
-          <div style={{
-            fontSize: '1.125rem',
-            lineHeight: '1.8',
-            color: 'var(--text-secondary)',
-            textAlign: 'center',
-          }}>
-            <p style={{ marginBottom: '1rem' }}>
+          <div className="forum-welcome-text">
+            <p>
               Здесь вы можете обсудить любые вопросы, связанные с эмоциональной
               регуляцией дошкольников, поделиться своим опытом и получить
               поддержку от других родителей и специалистов.
@@ -167,39 +163,16 @@ const ForumPage = () => {
       </section>
 
       {/* Rules Section */}
-      <section className="content-block" style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
-        <div className="content-container" style={{ maxWidth: '900px', margin: '0 auto' }}>
-          <div style={{
-            background: 'var(--bg-card)',
-            borderRadius: 'var(--radius-lg)',
-            padding: '2rem',
-            border: '2px solid var(--accent-color)',
-            boxShadow: 'var(--shadow-md)',
-          }}>
-            <h2 style={{
-              fontSize: '1.5rem',
-              fontWeight: '700',
-              color: 'var(--text-primary)',
-              marginBottom: '1.25rem',
-              textAlign: 'center',
-            }}>
+      <section className="content-block forum-rules">
+        <div className="content-container forum-rules-container">
+          <div className="forum-rules-card">
+            <h2 className="forum-rules-title">
               Правила нашего пространства
             </h2>
-            <p style={{
-              fontSize: '1rem',
-              color: 'var(--text-secondary)',
-              lineHeight: '1.7',
-              marginBottom: '1rem',
-            }}>
+            <p className="forum-rules-intro">
               Мы создаем безопасную среду, поэтому просим участников:
             </p>
-            <ul style={{
-              fontSize: '1rem',
-              color: 'var(--text-secondary)',
-              lineHeight: '1.8',
-              paddingLeft: '1.5rem',
-              listStyle: 'disc',
-            }}>
+            <ul className="forum-rules-list">
               <li>уважительно общаться друг с другом;</li>
               <li>избегать оценочных комментариев;</li>
               <li>не давать медицинских или психиатрических рекомендаций;</li>
@@ -210,71 +183,24 @@ const ForumPage = () => {
       </section>
 
       {/* Forum Sections */}
-      <section className="content-block" style={{ paddingTop: '2rem' }}>
-        <div className="content-container" style={{ maxWidth: '1000px', margin: '0 auto' }}>
-          <h2 className="content-h2" style={{ textAlign: 'center', marginBottom: '1rem' }}>
+      <section className="content-block forum-sections">
+        <div className="content-container forum-sections-container">
+          <h2 className="content-h2 forum-sections-title">
             Форум
           </h2>
-          <p style={{
-            fontSize: '1rem',
-            color: 'var(--text-secondary)',
-            textAlign: 'center',
-            marginBottom: '2.5rem',
-          }}>
+          <p className="forum-sections-subtitle">
             Разделы форума с обсуждениями между родителями
           </p>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '1.5rem',
-            marginBottom: '3rem',
-          }}>
+          <div className="forum-sections-grid">
             {forumSections.map((section, index) => (
-              <div
-                key={index}
-                style={{
-                  background: 'var(--bg-card)',
-                  borderRadius: 'var(--radius-lg)',
-                  padding: '1.75rem',
-                  border: '1px solid var(--border-color)',
-                  boxShadow: 'var(--shadow-sm)',
-                  transition: 'var(--transition)',
-                  cursor: 'pointer',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-4px)';
-                  e.currentTarget.style.boxShadow = 'var(--shadow-md)';
-                  e.currentTarget.style.borderColor = 'var(--accent-color)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = 'var(--shadow-sm)';
-                  e.currentTarget.style.borderColor = 'var(--border-color)';
-                }}
-              >
-                <div style={{
-                  fontSize: '2.5rem',
-                  marginBottom: '1rem',
-                  textAlign: 'center',
-                }}>
+              <div key={index} className="forum-section-card">
+                <div className="forum-section-icon">
                   {section.icon}
                 </div>
-                <h3 style={{
-                  fontSize: '1.125rem',
-                  fontWeight: '700',
-                  color: 'var(--text-primary)',
-                  marginBottom: '0.75rem',
-                  textAlign: 'center',
-                  lineHeight: '1.4',
-                }}>
+                <h3 className="forum-section-title">
                   {section.title}
                 </h3>
-                <p style={{
-                  fontSize: '0.9375rem',
-                  color: 'var(--text-secondary)',
-                  lineHeight: '1.6',
-                  textAlign: 'center',
-                }}>
+                <p className="forum-section-description">
                   {section.description}
                 </p>
               </div>
@@ -285,63 +211,32 @@ const ForumPage = () => {
 
       {/* Ask Psychologist Section */}
       <section className="content-block blockstyle-soft">
-        <div className="content-container" style={{ maxWidth: '900px', margin: '0 auto' }}>
-          <h2 className="content-h2" style={{ textAlign: 'center', marginBottom: '1rem' }}>
+        <div className="content-container forum-ask-psychologist-container">
+          <h2 className="content-h2 forum-ask-psychologist-title">
             Спросите психолога
           </h2>
-          <p style={{
-            fontSize: '1rem',
-            color: 'var(--text-secondary)',
-            lineHeight: '1.7',
-            textAlign: 'center',
-            marginBottom: '1.5rem',
-          }}>
+          <p className="forum-ask-psychologist-intro">
             В этом разделе вы можете задать вопрос специалисту и получить
             короткую профессиональную рекомендацию.
           </p>
-          <div style={{
-            background: 'var(--bg-card)',
-            borderRadius: 'var(--radius-lg)',
-            padding: '2rem',
-            border: '1px solid var(--border-color)',
-            boxShadow: 'var(--shadow-sm)',
-            marginBottom: '2rem',
-          }}>
-            <h3 style={{
-              fontSize: '1.25rem',
-              fontWeight: '700',
-              color: 'var(--text-primary)',
-              marginBottom: '1rem',
-            }}>
+          <div className="forum-ask-psychologist-card">
+            <h3 className="forum-ask-psychologist-subtitle">
               Психолог помогает разобраться:
             </h3>
-            <ul style={{
-              fontSize: '1rem',
-              color: 'var(--text-secondary)',
-              lineHeight: '1.8',
-              paddingLeft: '1.5rem',
-              listStyle: 'disc',
-              marginBottom: '1rem',
-            }}>
+            <ul className="forum-ask-psychologist-list">
               <li>почему возникает определенная эмоциональная реакция у ребенка;</li>
               <li>какие стратегии поведения подходят именно в вашей ситуации;</li>
               <li>когда стоит обратиться за дополнительной консультацией.</li>
             </ul>
-            <p style={{
-              fontSize: '0.9375rem',
-              color: 'var(--text-light)',
-              fontStyle: 'italic',
-              lineHeight: '1.6',
-            }}>
+            <p className="forum-ask-psychologist-note">
               К каждому вопросу мы добавляем подборку полезных материалов —
               статей, книг и упражнений.
             </p>
           </div>
-          <div style={{ textAlign: 'center' }}>
+          <div className="forum-ask-psychologist-btn-container">
             <button
               onClick={() => setShowForm(!showForm)}
-              className="cta-button primary"
-              style={{ fontSize: '1.125rem', padding: '1rem 2.5rem' }}
+              className="cta-button primary forum-ask-psychologist-btn"
             >
               {showForm ? '✕ Закрыть форму' : '✍️ Задать вопрос психологу'}
             </button>
@@ -351,56 +246,24 @@ const ForumPage = () => {
 
       {/* Question Form */}
       {showForm && (
-        <section className="content-block" style={{ paddingTop: '0' }}>
-          <div className="content-container" style={{ maxWidth: '800px', margin: '0 auto' }}>
-            <div style={{
-              background: 'var(--bg-card)',
-              borderRadius: 'var(--radius-lg)',
-              padding: '2rem',
-              boxShadow: 'var(--shadow-lg)',
-              border: '2px solid var(--accent-color)',
-            }}>
-              <h2 style={{
-                fontSize: '1.5rem',
-                fontWeight: '700',
-                color: 'var(--text-primary)',
-                marginBottom: '1.5rem',
-                textAlign: 'center',
-              }}>
+        <section className="content-block forum-form-section">
+          <div className="content-container forum-form-container">
+            <div className="forum-form-card">
+              <h2 className="forum-form-title">
                 Задайте вопрос психологу
               </h2>
-              <p style={{
-                fontSize: '1rem',
-                color: 'var(--text-secondary)',
-                textAlign: 'center',
-                marginBottom: '1.5rem',
-              }}>
+              <p className="forum-form-subtitle">
                 Опишите вашу ситуацию, и специалист даст профессиональную рекомендацию
               </p>
               <form onSubmit={handleSubmitQuestion}>
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <label style={{
-                    display: 'block',
-                    fontSize: '1rem',
-                    fontWeight: '600',
-                    color: 'var(--text-primary)',
-                    marginBottom: '0.5rem',
-                  }}>
+                <div className="form-group">
+                  <label className="form-label">
                     Категория
                   </label>
                   <select
                     value={newQuestion.category}
                     onChange={(e) => setNewQuestion({ ...newQuestion, category: e.target.value })}
-                    style={{
-                      width: '100%',
-                      padding: '0.875rem',
-                      fontSize: '1rem',
-                      border: '2px solid var(--border-color)',
-                      borderRadius: 'var(--radius-sm)',
-                      background: 'var(--bg-body)',
-                      color: 'var(--text-primary)',
-                      fontFamily: 'inherit',
-                    }}
+                    className="form-select"
                   >
                     {categories.filter(c => c !== 'Все вопросы').map(cat => (
                       <option key={cat} value={cat}>{cat}</option>
@@ -408,14 +271,8 @@ const ForumPage = () => {
                   </select>
                 </div>
 
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <label style={{
-                    display: 'block',
-                    fontSize: '1rem',
-                    fontWeight: '600',
-                    color: 'var(--text-primary)',
-                    marginBottom: '0.5rem',
-                  }}>
+                <div className="form-group">
+                  <label className="form-label">
                     Заголовок вопроса
                   </label>
                   <input
@@ -423,28 +280,13 @@ const ForumPage = () => {
                     value={newQuestion.title}
                     onChange={(e) => setNewQuestion({ ...newQuestion, title: e.target.value })}
                     placeholder="Кратко опишите вашу ситуацию"
-                    style={{
-                      width: '100%',
-                      padding: '0.875rem',
-                      fontSize: '1rem',
-                      border: '2px solid var(--border-color)',
-                      borderRadius: 'var(--radius-sm)',
-                      background: 'var(--bg-body)',
-                      color: 'var(--text-primary)',
-                      fontFamily: 'inherit',
-                    }}
+                    className="form-input"
                     required
                   />
                 </div>
 
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <label style={{
-                    display: 'block',
-                    fontSize: '1rem',
-                    fontWeight: '600',
-                    color: 'var(--text-primary)',
-                    marginBottom: '0.5rem',
-                  }}>
+                <div className="form-group">
+                  <label className="form-label">
                     Подробное описание
                   </label>
                   <textarea
@@ -452,26 +294,12 @@ const ForumPage = () => {
                     onChange={(e) => setNewQuestion({ ...newQuestion, content: e.target.value })}
                     placeholder="Расскажите подробнее о ситуации..."
                     rows="6"
-                    style={{
-                      width: '100%',
-                      padding: '0.875rem',
-                      fontSize: '1rem',
-                      border: '2px solid var(--border-color)',
-                      borderRadius: 'var(--radius-sm)',
-                      background: 'var(--bg-body)',
-                      color: 'var(--text-primary)',
-                      fontFamily: 'inherit',
-                      resize: 'vertical',
-                    }}
+                    className="form-textarea"
                     required
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  className="cta-button primary"
-                  style={{ width: '100%' }}
-                >
+                <button type="submit" className="cta-button primary form-button-full">
                   Отправить вопрос
                 </button>
               </form>
@@ -483,53 +311,20 @@ const ForumPage = () => {
       {/* Questions and Answers Section */}
       <section className="content-block" style={{ paddingTop: showForm ? '2rem' : '0' }}>
         <div className="content-container">
-          <h2 className="content-h2" style={{ textAlign: 'center', marginBottom: '1rem' }}>
+          <h2 className="content-h2 forum-questions-title">
             Вопросы и ответы
           </h2>
-          <p style={{
-            fontSize: '1rem',
-            color: 'var(--text-secondary)',
-            textAlign: 'center',
-            marginBottom: '2.5rem',
-          }}>
+          <p className="forum-questions-subtitle">
             Ответы психологов на вопросы родителей
           </p>
           
           {/* Categories Filter */}
-          <div style={{
-            display: 'flex',
-            gap: '0.75rem',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            marginBottom: '2rem',
-          }}>
+          <div className="forum-categories">
             {categories.map(cat => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                style={{
-                  padding: '0.75rem 1.5rem',
-                  background: activeCategory === cat ? 'var(--accent-gradient)' : 'var(--bg-card)',
-                  color: activeCategory === cat ? 'var(--text-on-accent)' : 'var(--text-secondary)',
-                  border: activeCategory === cat ? 'none' : '2px solid var(--border-color)',
-                  borderRadius: 'var(--radius-md)',
-                  fontSize: '0.9375rem',
-                  fontWeight: '600',
-                  cursor: 'pointer',
-                  transition: 'var(--transition)',
-                }}
-                onMouseEnter={(e) => {
-                  if (activeCategory !== cat) {
-                    e.target.style.borderColor = 'var(--accent-color)';
-                    e.target.style.color = 'var(--accent-color)';
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (activeCategory !== cat) {
-                    e.target.style.borderColor = 'var(--border-color)';
-                    e.target.style.color = 'var(--text-secondary)';
-                  }
-                }}
+                className={`forum-category-btn ${activeCategory === cat ? 'active' : ''}`}
               >
                 {cat}
               </button>
@@ -537,159 +332,61 @@ const ForumPage = () => {
           </div>
 
           {/* Questions List */}
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '1.5rem',
-            maxWidth: '900px',
-            margin: '0 auto',
-          }}>
+          <div className="forum-questions-list">
             {filteredQuestions.map(question => (
               <div
                 key={question.id}
-                style={{
-                  background: 'var(--bg-card)',
-                  borderRadius: 'var(--radius-lg)',
-                  padding: '2rem',
-                  border: question.hasAnswer ? '2px solid var(--accent-color)' : '1px solid var(--border-color)',
-                  boxShadow: 'var(--shadow-sm)',
-                  transition: 'var(--transition)',
-                  cursor: 'pointer',
-                }}
+                className={`forum-question-card ${question.hasAnswer ? 'has-answer' : ''}`}
                 onClick={() => setSelectedQuestion(selectedQuestion === question.id ? null : question.id)}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-4px)';
-                  e.currentTarget.style.boxShadow = 'var(--shadow-md)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = 'var(--shadow-sm)';
-                }}
               >
                 {/* Question Header */}
-                <div style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'flex-start',
-                  marginBottom: '1rem',
-                  gap: '1rem',
-                  flexWrap: 'wrap',
-                }}>
+                <div className="forum-question-header">
                   <div>
-                    <div style={{
-                      display: 'inline-block',
-                      padding: '0.375rem 0.875rem',
-                      background: 'var(--bg-overlay)',
-                      borderRadius: 'var(--radius-sm)',
-                      fontSize: '0.8125rem',
-                      fontWeight: '600',
-                      color: 'var(--accent-color)',
-                      marginBottom: '0.75rem',
-                    }}>
+                    <div className="forum-question-category-badge">
                       {question.category}
                     </div>
-                    <h3 style={{
-                      fontSize: '1.25rem',
-                      fontWeight: '700',
-                      color: 'var(--text-primary)',
-                      marginBottom: '0.5rem',
-                    }}>
+                    <h3 className="forum-question-title">
                       {question.title}
                     </h3>
-                    <div style={{
-                      fontSize: '0.875rem',
-                      color: 'var(--text-light)',
-                    }}>
-                      <span style={{ fontWeight: '600' }}>{question.author}</span> • {question.date}
+                    <div className="forum-question-meta">
+                      <span className="forum-question-meta-author">{question.author}</span> • {question.date}
                     </div>
                   </div>
                   {question.hasAnswer && (
-                    <div style={{
-                      padding: '0.5rem 1rem',
-                      background: 'var(--accent-gradient)',
-                      color: 'white',
-                      borderRadius: 'var(--radius-sm)',
-                      fontSize: '0.875rem',
-                      fontWeight: '600',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.375rem',
-                    }}>
+                    <div className="forum-question-answer-badge">
                       ✓ Ответ психолога
                     </div>
                   )}
                 </div>
 
                 {/* Question Content */}
-                <p style={{
-                  fontSize: '1rem',
-                  color: 'var(--text-secondary)',
-                  lineHeight: '1.7',
-                  marginBottom: '1rem',
-                }}>
+                <p className="forum-question-content">
                   {question.content}
                 </p>
 
                 {/* Question Stats */}
-                <div style={{
-                  display: 'flex',
-                  gap: '1.5rem',
-                  fontSize: '0.9375rem',
-                  color: 'var(--text-light)',
-                }}>
+                <div className="forum-question-stats">
                   <span>💬 {question.answers} {question.answers === 1 ? 'ответ' : 'ответов'}</span>
                   <span>❤️ {question.likes}</span>
                 </div>
 
                 {/* Psychologist Answer */}
                 {selectedQuestion === question.id && question.hasAnswer && question.psychologistAnswer && (
-                  <div style={{
-                    marginTop: '1.5rem',
-                    padding: '1.5rem',
-                    background: 'var(--bg-section)',
-                    borderRadius: 'var(--radius-md)',
-                    borderLeft: '4px solid var(--accent-color)',
-                  }}>
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.5rem',
-                      marginBottom: '1rem',
-                    }}>
-                      <div style={{
-                        width: '40px',
-                        height: '40px',
-                        borderRadius: '50%',
-                        background: 'var(--accent-gradient)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontSize: '1.25rem',
-                        color: 'white',
-                      }}>
+                  <div className="forum-psychologist-answer">
+                    <div className="forum-psychologist-header">
+                      <div className="forum-psychologist-avatar">
                         👨‍⚕️
                       </div>
                       <div>
-                        <div style={{
-                          fontSize: '1rem',
-                          fontWeight: '700',
-                          color: 'var(--text-primary)',
-                        }}>
+                        <div className="forum-psychologist-name">
                           {question.psychologistAnswer.author}
                         </div>
-                        <div style={{
-                          fontSize: '0.8125rem',
-                          color: 'var(--text-light)',
-                        }}>
+                        <div className="forum-psychologist-date">
                           {question.psychologistAnswer.date}
                         </div>
                       </div>
                     </div>
-                    <p style={{
-                      fontSize: '1rem',
-                      color: 'var(--text-primary)',
-                      lineHeight: '1.7',
-                    }}>
+                    <p className="forum-psychologist-content">
                       {question.psychologistAnswer.content}
                     </p>
                   </div>

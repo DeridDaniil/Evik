@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './DailyActivitiesPage.css';
 
 const DailyActivitiesPage = () => {
   const [isSpinning, setIsSpinning] = useState(false);
@@ -130,20 +131,23 @@ const DailyActivitiesPage = () => {
 
   const spinWheel = () => {
     if (isSpinning) return;
-    
+
     setIsSpinning(true);
     setSelectedActivity(null);
-    
+
     // Random rotation between 1440 and 2160 degrees (4-6 full spins)
     const randomRotation = 1440 + Math.random() * 720;
     const finalRotation = rotation + randomRotation;
     setRotation(finalRotation);
-    
+
     // Calculate which activity was selected
     setTimeout(() => {
       const normalizedRotation = finalRotation % 360;
       const segmentAngle = 360 / activities.length;
-      const selectedIndex = Math.floor((360 - normalizedRotation) / segmentAngle) % activities.length;
+      // Pointer is at the top (0 degrees), so we calculate from there
+      // Add half segment to align with center of segment
+      const adjustedRotation = (normalizedRotation + (segmentAngle / 2)) % 360;
+      const selectedIndex = Math.floor(adjustedRotation / segmentAngle) % activities.length;
       setSelectedActivity(activities[selectedIndex]);
       setIsSpinning(false);
     }, 3000);
@@ -164,69 +168,31 @@ const DailyActivitiesPage = () => {
       {/* Roulette Section */}
       <section className="content-block">
         <div className="content-container" style={{ maxWidth: '1000px', margin: '0 auto' }}>
-          
+
           {!selectedActivity ? (
-            <div style={{ textAlign: 'center' }}>
+            <div className="roulette-container">
               {/* Roulette Wheel */}
-              <div style={{
-                position: 'relative',
-                width: '400px',
-                height: '400px',
-                margin: '0 auto 3rem',
-                maxWidth: '90vw',
-                aspectRatio: '1',
-              }}>
+              <div className="roulette-wheel-wrapper">
                 {/* Pointer */}
-                <div style={{
-                  position: 'absolute',
-                  top: '-20px',
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  width: '0',
-                  height: '0',
-                  borderLeft: '20px solid transparent',
-                  borderRight: '20px solid transparent',
-                  borderTop: '40px solid var(--accent-color)',
-                  zIndex: 10,
-                  filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.2))',
-                }}></div>
+                <div className="roulette-pointer"></div>
 
                 {/* Wheel */}
-                <div style={{
-                  width: '100%',
-                  height: '100%',
-                  borderRadius: '50%',
-                  border: '8px solid var(--accent-color)',
-                  boxShadow: 'var(--shadow-lg), inset 0 0 30px rgba(0,0,0,0.1)',
-                  transform: `rotate(${rotation}deg)`,
-                  transition: isSpinning ? 'transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99)' : 'none',
-                  background: `conic-gradient(
-                    ${activities.map((act, i) => {
+                <div
+                  className="roulette-wheel"
+                  style={{
+                    transform: `rotate(${rotation}deg)`,
+                    transition: isSpinning ? 'transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99)' : 'none',
+                    background: `conic-gradient(
+                      ${activities.map((act, i) => {
                       const start = (i / activities.length) * 360;
                       const end = ((i + 1) / activities.length) * 360;
                       return `${act.color} ${start}deg ${end}deg`;
                     }).join(', ')}
-                  )`,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  position: 'relative',
-                }}>
+                    )`,
+                  }}
+                >
                   {/* Center Circle */}
-                  <div style={{
-                    width: '80px',
-                    height: '80px',
-                    borderRadius: '50%',
-                    background: 'var(--accent-gradient)',
-                    boxShadow: 'var(--shadow-md)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '2rem',
-                    fontWeight: '700',
-                    color: 'white',
-                    zIndex: 5,
-                  }}>
+                  <div className="roulette-center">
                     🎯
                   </div>
 
@@ -237,18 +203,14 @@ const DailyActivitiesPage = () => {
                     const radius = 140;
                     const x = Math.cos(radian) * radius;
                     const y = Math.sin(radian) * radius;
-                    
+
                     return (
                       <div
                         key={activity.id}
+                        className="roulette-icon"
                         style={{
-                          position: 'absolute',
-                          left: '50%',
-                          top: '50%',
                           transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) rotate(${-rotation}deg)`,
-                          fontSize: '2rem',
                           transition: isSpinning ? 'transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99)' : 'none',
-                          filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))',
                         }}
                       >
                         {activity.icon}
@@ -262,123 +224,53 @@ const DailyActivitiesPage = () => {
               <button
                 onClick={spinWheel}
                 disabled={isSpinning}
-                style={{
-                  padding: '1.5rem 3rem',
-                  background: isSpinning ? 'var(--text-light)' : 'var(--gradient-primary)',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: 'var(--radius-xl)',
-                  fontSize: '1.5rem',
-                  fontWeight: '700',
-                  cursor: isSpinning ? 'not-allowed' : 'pointer',
-                  boxShadow: 'var(--shadow-lg)',
-                  transition: 'var(--transition)',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.05em',
-                }}
-                onMouseEnter={(e) => {
-                  if (!isSpinning) {
-                    e.target.style.transform = 'scale(1.05)';
-                    e.target.style.boxShadow = 'var(--shadow-glow)';
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (!isSpinning) {
-                    e.target.style.transform = 'scale(1)';
-                    e.target.style.boxShadow = 'var(--shadow-lg)';
-                  }
-                }}
+                className="roulette-spin-button"
               >
                 {isSpinning ? '🎲 Крутим...' : '🎲 Крутить рулетку!'}
               </button>
             </div>
           ) : (
             /* Activity Details */
-            <div style={{
-              background: 'var(--bg-card)',
-              borderRadius: 'var(--radius-xl)',
-              padding: '3rem',
-              boxShadow: 'var(--shadow-lg)',
-              border: `4px solid ${selectedActivity.color}`,
-              animation: 'fadeIn 0.5s ease',
-            }}>
+            <div
+              className="activity-card"
+              style={{ border: `4px solid ${selectedActivity.color}` }}
+            >
               {/* Header */}
-              <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                <div style={{ fontSize: '5rem', marginBottom: '1rem' }}>
+              <div className="activity-header">
+                <div className="activity-icon">
                   {selectedActivity.icon}
                 </div>
-                <h2 style={{
-                  fontSize: '2rem',
-                  fontWeight: '700',
-                  color: 'var(--text-primary)',
-                  marginBottom: '0.5rem',
-                }}>
+                <h2 className="activity-title">
                   {selectedActivity.title}
                 </h2>
-                <div style={{
-                  display: 'inline-block',
-                  padding: '0.5rem 1.5rem',
-                  background: selectedActivity.color,
-                  borderRadius: 'var(--radius-md)',
-                  fontSize: '1rem',
-                  fontWeight: '600',
-                  color: 'var(--text-primary)',
-                }}>
+                <div
+                  className="activity-duration"
+                  style={{ background: selectedActivity.color }}
+                >
                   ⏱️ {selectedActivity.duration}
                 </div>
               </div>
 
               {/* Description */}
-              <div style={{
-                background: 'var(--bg-section)',
-                padding: '1.5rem',
-                borderRadius: 'var(--radius-md)',
-                marginBottom: '2rem',
-              }}>
-                <h3 style={{
-                  fontSize: '1.25rem',
-                  fontWeight: '700',
-                  color: 'var(--accent-color)',
-                  marginBottom: '0.75rem',
-                }}>
+              <div className="activity-description-box">
+                <h3 className="activity-section-title">
                   Как играть:
                 </h3>
-                <p style={{
-                  fontSize: '1.125rem',
-                  color: 'var(--text-primary)',
-                  lineHeight: '1.7',
-                }}>
+                <p className="activity-description-text">
                   {selectedActivity.description}
                 </p>
               </div>
 
               {/* Skills */}
-              <div style={{ marginBottom: '2rem' }}>
-                <h3 style={{
-                  fontSize: '1.25rem',
-                  fontWeight: '700',
-                  color: 'var(--accent-color)',
-                  marginBottom: '1rem',
-                }}>
+              <div className="activity-skills">
+                <h3 className="activity-section-title">
                   Развиваемые навыки:
                 </h3>
-                <div style={{
-                  display: 'flex',
-                  gap: '0.75rem',
-                  flexWrap: 'wrap',
-                }}>
+                <div className="activity-skills-list">
                   {selectedActivity.skills.map((skill, index) => (
                     <span
                       key={index}
-                      style={{
-                        padding: '0.625rem 1.25rem',
-                        background: 'var(--bg-overlay)',
-                        border: '2px solid var(--accent-color)',
-                        borderRadius: '100px',
-                        fontSize: '0.9375rem',
-                        fontWeight: '600',
-                        color: 'var(--accent-color)',
-                      }}
+                      className="activity-skill-tag"
                     >
                       ✓ {skill}
                     </span>
@@ -387,43 +279,17 @@ const DailyActivitiesPage = () => {
               </div>
 
               {/* Parent Tips */}
-              <div style={{
-                background: 'var(--bg-overlay)',
-                padding: '1.5rem',
-                borderRadius: 'var(--radius-md)',
-                marginBottom: '2rem',
-              }}>
-                <h3 style={{
-                  fontSize: '1.25rem',
-                  fontWeight: '700',
-                  color: 'var(--accent-color)',
-                  marginBottom: '1rem',
-                }}>
+              <div className="activity-tips-box">
+                <h3 className="activity-section-title">
                   💡 Советы для родителей:
                 </h3>
-                <ul style={{
-                  listStyle: 'none',
-                  padding: 0,
-                  margin: 0,
-                }}>
+                <ul className="activity-tips-list">
                   {selectedActivity.parentTips.map((tip, index) => (
                     <li
                       key={index}
-                      style={{
-                        fontSize: '1rem',
-                        color: 'var(--text-primary)',
-                        marginBottom: '0.75rem',
-                        paddingLeft: '1.5rem',
-                        position: 'relative',
-                        lineHeight: '1.6',
-                      }}
+                      className="activity-tip-item"
                     >
-                      <span style={{
-                        position: 'absolute',
-                        left: '0',
-                        color: 'var(--accent-color)',
-                        fontWeight: '700',
-                      }}>
+                      <span className="activity-tip-bullet">
                         •
                       </span>
                       {tip}
@@ -433,7 +299,7 @@ const DailyActivitiesPage = () => {
               </div>
 
               {/* Action Button */}
-              <div style={{ textAlign: 'center' }}>
+              <div className="activity-actions">
                 <button
                   onClick={() => {
                     setSelectedActivity(null);

@@ -1,0 +1,344 @@
+/* Video Library Page Styles */
+
+.video-library-categories {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.video-library-category-btn {
+  padding: 0.875rem 1.75rem;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 2px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+}
+
+.video-library-category-btn.active {
+  background: var(--accent-gradient);
+  color: var(--text-on-accent);
+  border: none;
+  box-shadow: var(--shadow-md);
+}
+
+.video-library-category-btn:hover:not(.active) {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  transform: translateY(-2px);
+}
+
+.video-library-category-icon {
+  font-size: 1.25rem;
+}
+
+.video-library-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.video-library-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.video-library-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--accent-color);
+}
+
+.video-library-thumbnail {
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+}
+
+.video-library-thumbnail-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Специальная позиция для карточки "Работа с детскими истериками" */
+.video-thumbnail-top {
+  object-position: top;
+}
+
+.video-library-duration {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 0.375rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.video-library-play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: var(--accent-gradient);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.video-library-content {
+  padding: 1.5rem;
+}
+
+.video-library-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+
+.video-library-description {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Resources Section */
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.resource-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.resource-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-color);
+}
+
+.resource-icon {
+  font-size: 3.5rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.resource-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.resource-subtitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.resource-description {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.resource-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.resource-list li {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.resource-list li::before {
+  content: '●';
+  color: var(--accent-color);
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+.resource-list li strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* ================================
+   АДАПТИВНЫЕ СТИЛИ
+   ================================ */
+
+@media (max-width: 768px) {
+  /* Categories */
+  .video-library-categories {
+    gap: 0.75rem;
+  }
+
+  .video-library-category-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9375rem;
+  }
+
+  .video-library-category-icon {
+    font-size: 1.125rem;
+  }
+
+  /* Video Grid */
+  .video-library-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .video-library-thumbnail {
+    height: 400px;
+  }
+
+  .video-library-content {
+    padding: 1.25rem;
+  }
+
+  .video-library-title {
+    font-size: 1rem;
+  }
+
+  .video-library-description {
+    font-size: 0.875rem;
+  }
+
+  /* Resources */
+  .resources-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .resource-card {
+    padding: 2rem;
+  }
+
+  .resource-icon {
+    font-size: 3rem;
+  }
+
+  .resource-title {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Categories */
+  .video-library-categories {
+    gap: 0.5rem;
+  }
+
+  .video-library-category-btn {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+  }
+
+  .video-library-category-icon {
+    font-size: 1rem;
+  }
+
+  /* Video Grid */
+  .video-library-grid {
+    gap: 1.25rem;
+  }
+
+  .video-library-thumbnail {
+    height: 350px;
+  }
+
+  .video-library-play-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 1.25rem;
+  }
+
+  .video-library-duration {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8125rem;
+    bottom: 0.75rem;
+    right: 0.75rem;
+  }
+
+  .video-library-content {
+    padding: 1rem;
+  }
+
+  .video-library-title {
+    font-size: 0.9375rem;
+  }
+
+  .video-library-description {
+    font-size: 0.8125rem;
+  }
+
+  /* Resources */
+  .resources-grid {
+    gap: 1.25rem;
+  }
+
+  .resource-card {
+    padding: 1.5rem;
+  }
+
+  .resource-icon {
+    font-size: 2.5rem;
+  }
+
+  .resource-title {
+    font-size: 1.125rem;
+  }
+
+  .resource-subtitle {
+    font-size: 1rem;
+  }
+
+  .resource-list li {
+    font-size: 0.9375rem;
+    padding-left: 1.25rem;
+  }
+}
+

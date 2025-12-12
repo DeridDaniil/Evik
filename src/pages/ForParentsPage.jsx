@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import './ForParentsPage.css';
 
 const ForParentsPage = () => {
   const [showEmergencyModal, setShowEmergencyModal] = useState(false);
@@ -6,6 +7,9 @@ const ForParentsPage = () => {
   const [showJournal, setShowJournal] = useState(false);
   const [showJournalEntries, setShowJournalEntries] = useState(false);
   const [selectedPractice, setSelectedPractice] = useState(null);
+  const [selectedTest, setSelectedTest] = useState(null);
+  const [selectedMaterial, setSelectedMaterial] = useState(null);
+  const [expandedTechnique, setExpandedTechnique] = useState(null);
   
   // Burnout test state
   const [burnoutAnswers, setBurnoutAnswers] = useState({
@@ -21,6 +25,117 @@ const ForParentsPage = () => {
     const saved = localStorage.getItem('journalEntries');
     return saved ? JSON.parse(saved) : [];
   });
+
+  // Block scroll when modal is open
+  useEffect(() => {
+    if (showEmergencyModal || selectedPractice || showJournalEntries || selectedTest) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [showEmergencyModal, selectedPractice, showJournalEntries, selectedTest]);
+
+  // Tests data
+  const tests = [
+    {
+      id: 1,
+      title: 'Ваш стиль родительского реагирования',
+      description: 'Основан на современных исследованиях о стилях воспитания',
+      icon: '👨‍👩‍👧',
+      details: 'Поможет понять, какие реакции доминируют в вашем взаимодействии с ребенком: поддержка, директивность, непоследовательность или эмоциональная дистанция.',
+    },
+    {
+      id: 2,
+      title: 'Родительский стресс и саморегуляция',
+      description: 'Упрощенный вариант шкал оценки родительского стресса',
+      icon: '😌',
+      details: 'Показывает, какие ситуации усиливают эмоциональную нагрузку и что помогает вам сохранять спокойствие.',
+    },
+    {
+      id: 3,
+      title: 'Эмоциональная отзывчивость родителя',
+      description: 'Основан на концепции эмоционального коучинга Дж. Готтмана',
+      icon: '💝',
+      details: 'Позволяет понять, насколько легко вам удается замечать, принимать и корректно отражать эмоции дошкольника.',
+    },
+    {
+      id: 4,
+      title: 'Ваши эмоциональные триггеры',
+      description: 'Короткий самоопросник для выявления факторов раздражения',
+      icon: '⚡',
+      details: 'Сопровождается рекомендациями, основанными на методах когнитивно-поведенческого подхода.',
+    },
+  ];
+
+  // Materials data
+  const materials = [
+    {
+      id: 1,
+      title: 'Эмоциональное развитие детей 3-7 лет',
+      icon: '📊',
+      description: 'Описание ключевых этапов эмоционального развития',
+      content: 'Составлено на основе данных возрастной психологии и нейропсихологии. Поможет отличить нормальные возрастные проявления от признаков стрессовой перегрузки.\n\n3-4 года: Развитие базовых эмоций, начало понимания чувств других.\n4-5 лет: Усложнение эмоциональных реакций, появление социальных эмоций.\n5-6 лет: Развитие эмоциональной саморегуляции.\n6-7 лет: Формирование эмоционального интеллекта.',
+    },
+    {
+      id: 2,
+      title: 'Практики регуляции эмоций',
+      icon: '🧘',
+      description: 'Техники, которые помогают ребенку регулировать эмоции',
+      hasTechniques: true,
+    },
+    {
+      id: 3,
+      title: 'Фразы, которые помогают ребенку успокоиться',
+      icon: '💬',
+      description: 'Корректные формулировки для эмоциональной поддержки',
+      content: 'Подборка фраз, основанных на принципах эмоционально-фокусированного воспитания:\n\n• "Я вижу, что тебе очень трудно. Я рядом."\n• "Давай вместе подумаем, что могло бы помочь."\n• "Ты имеешь право злиться. Давай найдем безопасный способ выразить эмоции."\n• "Я понимаю, что ты расстроен. Расскажи мне, что случилось."\n• "Твои чувства важны. Давай найдем способ, как с ними справиться."\n• "Я здесь, чтобы помочь тебе. Мы вместе пройдем через это."',
+    },
+    {
+      id: 4,
+      title: 'Когда стоит обратиться к специалисту',
+      icon: '🏥',
+      description: 'Ориентиры для профессиональной оценки',
+      content: 'Составлено с опорой на Клинические рекомендации Минздрава РФ и современные руководства по психологии развития.\n\nОбратитесь к специалисту, если:\n\n• Эмоциональные вспышки длятся более 15-20 минут регулярно\n• Ребенок причиняет вред себе или другим\n• Наблюдается регресс в развитии (потеря навыков)\n• Нарушения сна или аппетита длятся более 2 недель\n• Ребенок избегает социальных контактов\n• Появились навязчивые действия или страхи\n• Вы чувствуете, что не справляетесь с ситуацией',
+    },
+  ];
+
+  // Emotion regulation techniques
+  const emotionTechniques = [
+    {
+      id: 1,
+      title: 'Совместное дыхание',
+      icon: '🌬️',
+      content: 'Сядьте рядом с ребенком. Положите его руку на свой живот. Дышите медленно и глубоко, показывая, как поднимается и опускается живот. Попросите ребенка дышать вместе с вами.\n\nМеханизм: Активирует парасимпатическую нервную систему, снижает уровень кортизола, синхронизирует эмоциональное состояние родителя и ребенка.',
+    },
+    {
+      id: 2,
+      title: 'Упражнение "Теплые ладошки"',
+      icon: '🤲',
+      content: 'Попросите ребенка потереть ладошки друг о друга, пока они не станут теплыми. Затем приложить их к щекам или животу. Повторить 3-5 раз.\n\nМеханизм: Тактильная стимуляция и тепло активируют выработку окситоцина, создают ощущение безопасности и комфорта.',
+    },
+    {
+      id: 3,
+      title: 'Мягкое обнимание',
+      icon: '🤗',
+      content: 'Обнимите ребенка мягко, но крепко. Не говорите ничего, просто держите. Если ребенок сопротивляется, предложите "обнять игрушку вместе".\n\nМеханизм: Глубокое давление стимулирует проприоцептивную систему, снижает возбуждение нервной системы, высвобождает окситоцин.',
+    },
+    {
+      id: 4,
+      title: 'Переключающие игры',
+      icon: '🎯',
+      content: '"Замри" - двигайтесь под музыку, замирайте по команде.\n"Быстрые руки" - хлопайте в ладоши в разном темпе.\n"Найди пять предметов" - ищите предметы определенного цвета.\n\nМеханизм: Переключают внимание с эмоции на действие, развивают произвольный контроль, активируют префронтальную кору.',
+    },
+    {
+      id: 5,
+      title: 'Ритуалы успокоения перед сном',
+      icon: '🌙',
+      content: 'Создайте последовательность: ванна → пижама → сказка → колыбельная → поцелуй. Повторяйте каждый вечер в одном порядке.\n\nМеханизм: Предсказуемость создает чувство безопасности, ритуал становится сигналом для нервной системы о переходе ко сну, снижает тревожность.',
+    },
+  ];
 
   const practices = [
     {
@@ -258,68 +373,166 @@ const ForParentsPage = () => {
         </div>
       </section>
 
+      {/* Interactive Tests Section */}
+      <section className="content-block" style={{ background: 'var(--bg-light)' }}>
+        <div className="content-container">
+          <h2 className="content-h2" style={{ textAlign: 'center', marginBottom: '1rem' }}>
+            Интерактивные тесты для родителей
+          </h2>
+          <p className="for-parents-tests-intro">
+            Этот раздел поможет вам лучше понять собственные реакции, стиль воспитания и факторы, влияющие на эмоциональный климат в семье. Тесты короткие, простые и направлены на повышение осознанности.
+          </p>
+
+          <div className="for-parents-tests-grid">
+            {tests.map(test => (
+              <div
+                key={test.id}
+                onClick={() => setSelectedTest(test)}
+                className="for-parents-test-card"
+              >
+                <div className="for-parents-test-icon">
+                  {test.icon}
+                </div>
+                <h3 className="for-parents-test-title">
+                  {test.title}
+                </h3>
+                <p className="for-parents-test-description">
+                  {test.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Materials Section */}
+      <section className="content-block">
+        <div className="content-container">
+          <h2 className="content-h2" style={{ textAlign: 'center', marginBottom: '1rem' }}>
+            Материалы и полезные руководства
+          </h2>
+          <p className="for-parents-materials-intro">
+            Краткие и практичные материалы, которые помогут вам применять знания в реальном общении с ребенком.
+          </p>
+
+          <div className="for-parents-materials-grid">
+            {materials.map(material => (
+              <div
+                key={material.id}
+                onClick={() => {
+                  const newExpandedId = expandedTechnique === material.id ? null : material.id;
+                  const newSelectedMaterial = selectedMaterial?.id === material.id ? null : material;
+                  
+                  if (material.hasTechniques) {
+                    setExpandedTechnique(newExpandedId);
+                    setSelectedMaterial(null);
+                  } else {
+                    setSelectedMaterial(newSelectedMaterial);
+                    setExpandedTechnique(null);
+                  }
+                  
+                  setTimeout(() => {
+                    if (newExpandedId || newSelectedMaterial) {
+                      document.getElementById(`material-${material.id}`)?.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'nearest'
+                      });
+                    }
+                  }, 100);
+                }}
+                className={`for-parents-material-card ${
+                  (selectedMaterial?.id === material.id || expandedTechnique === material.id) ? 'active' : ''
+                }`}
+              >
+                <div className="for-parents-material-icon">
+                  {material.icon}
+                </div>
+                <h3 className="for-parents-material-title">
+                  {material.title}
+                </h3>
+                <p className="for-parents-material-description">
+                  {material.description}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Expanded Techniques */}
+          {expandedTechnique === 2 && (
+            <div id="material-2" className="for-parents-material-expanded">
+              <h3 className="for-parents-techniques-title">
+                Техники эмоциональной регуляции для детей
+              </h3>
+              <div className="for-parents-techniques-grid">
+                {emotionTechniques.map(technique => (
+                  <div key={technique.id} className="for-parents-technique-card">
+                    <div className="for-parents-technique-header">
+                      <span className="for-parents-technique-icon">{technique.icon}</span>
+                      <h4 className="for-parents-technique-title">
+                        {technique.title}
+                      </h4>
+                    </div>
+                    <p className="for-parents-technique-content">
+                      {technique.content}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <div className="for-parents-material-close-btn">
+                <button
+                  onClick={() => setExpandedTechnique(null)}
+                  className="cta-button secondary"
+                >
+                  Закрыть
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Expanded Material Content */}
+          {selectedMaterial && !selectedMaterial.hasTechniques && (
+            <div id={`material-${selectedMaterial.id}`} className="for-parents-material-expanded">
+              <div className="for-parents-material-expanded-icon">
+                {selectedMaterial.icon}
+              </div>
+              <h3 className="for-parents-material-expanded-title">
+                {selectedMaterial.title}
+              </h3>
+              <p className="for-parents-material-expanded-description">
+                {selectedMaterial.description}
+              </p>
+
+              <div className="for-parents-material-content-box">
+                <p className="for-parents-material-content-text">
+                  {selectedMaterial.content}
+                </p>
+              </div>
+
+              <div className="for-parents-material-close-btn">
+                <button
+                  onClick={() => setSelectedMaterial(null)}
+                  className="cta-button secondary"
+                >
+                  Закрыть
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
       {/* Fixed Buttons Container */}
-      <div style={{
-        position: 'fixed',
-        bottom: '2rem',
-        right: '2rem',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '1rem',
-        zIndex: 1000,
-      }}>
+      <div className="fixed-buttons">
         {/* Journal Button - Only show if there are entries */}
         {journalEntries.length > 0 && (
           <button
             onClick={() => setShowJournalEntries(true)}
             disabled={showEmergencyModal || selectedPractice !== null || showJournalEntries}
-            style={{
-              width: '70px',
-              height: '70px',
-              borderRadius: '50%',
-              background: (showEmergencyModal || selectedPractice !== null || showJournalEntries) 
-                ? 'rgba(138, 97, 255, 0.5)' 
-                : 'linear-gradient(135deg, #8a61ff 0%, #7c4dff 100%)',
-              border: 'none',
-              boxShadow: '0 4px 20px rgba(138, 97, 255, 0.4)',
-              cursor: (showEmergencyModal || selectedPractice !== null || showJournalEntries) ? 'not-allowed' : 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '2rem',
-              transition: 'all 0.3s ease',
-              opacity: (showEmergencyModal || selectedPractice !== null || showJournalEntries) ? 0.5 : 1,
-              position: 'relative',
-            }}
-            onMouseEnter={(e) => {
-              if (!showEmergencyModal && !selectedPractice && !showJournalEntries) {
-                e.currentTarget.style.transform = 'scale(1.1)';
-                e.currentTarget.style.boxShadow = '0 6px 30px rgba(138, 97, 255, 0.6)';
-              }
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'scale(1)';
-              e.currentTarget.style.boxShadow = '0 4px 20px rgba(138, 97, 255, 0.4)';
-            }}
+            className="fixed-button for-parents-journal-btn"
             title="Мои записи в дневнике"
           >
             📔
-            <span style={{
-              position: 'absolute',
-              top: '-5px',
-              right: '-5px',
-              background: '#ff6b6b',
-              color: 'white',
-              borderRadius: '50%',
-              width: '24px',
-              height: '24px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '0.75rem',
-              fontWeight: 'bold',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
-            }}>
+            <span className="fixed-button-badge">
               {journalEntries.length}
             </span>
           </button>
@@ -329,33 +542,7 @@ const ForParentsPage = () => {
         <button
           onClick={() => setShowEmergencyModal(true)}
           disabled={showEmergencyModal || selectedPractice !== null || showJournalEntries}
-          style={{
-            width: '70px',
-            height: '70px',
-            borderRadius: '50%',
-            background: (showEmergencyModal || selectedPractice !== null || showJournalEntries) 
-              ? 'rgba(255, 107, 107, 0.5)' 
-              : 'linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%)',
-            border: 'none',
-            boxShadow: '0 4px 20px rgba(255, 107, 107, 0.4)',
-            cursor: (showEmergencyModal || selectedPractice !== null || showJournalEntries) ? 'not-allowed' : 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '2rem',
-            transition: 'all 0.3s ease',
-            opacity: (showEmergencyModal || selectedPractice !== null || showJournalEntries) ? 0.5 : 1,
-          }}
-          onMouseEnter={(e) => {
-            if (!showEmergencyModal && !selectedPractice && !showJournalEntries) {
-              e.currentTarget.style.transform = 'scale(1.1)';
-              e.currentTarget.style.boxShadow = '0 6px 30px rgba(255, 107, 107, 0.6)';
-            }
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'scale(1)';
-            e.currentTarget.style.boxShadow = '0 4px 20px rgba(255, 107, 107, 0.4)';
-          }}
+          className="fixed-button for-parents-emergency-btn"
           title="Экстренная помощь"
         >
           🆘
@@ -1089,6 +1276,110 @@ const ForParentsPage = () => {
           </div>
         </div>
       )}
+
+      {/* Test Modal */}
+      {selectedTest && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(0, 0, 0, 0.7)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 2000,
+            padding: '1rem',
+            overflow: 'auto',
+          }}
+          onClick={() => setSelectedTest(null)}
+          onTouchMove={(e) => e.preventDefault()}
+        >
+          <div
+            style={{
+              background: '#fff',
+              borderRadius: 'var(--radius-lg)',
+              padding: '2.5rem',
+              maxWidth: '700px',
+              width: '100%',
+              boxShadow: 'var(--shadow-lg)',
+              maxHeight: '90vh',
+              overflowY: 'auto',
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{ fontSize: '4rem', textAlign: 'center', marginBottom: '1rem' }}>
+              {selectedTest.icon}
+            </div>
+            <h2 style={{
+              fontSize: '1.75rem',
+              fontWeight: '700',
+              color: 'var(--text-primary)',
+              marginBottom: '1rem',
+              textAlign: 'center',
+            }}>
+              {selectedTest.title}
+            </h2>
+            <p style={{
+              fontSize: '1rem',
+              color: 'var(--text-secondary)',
+              lineHeight: '1.7',
+              marginBottom: '1.5rem',
+              textAlign: 'center',
+            }}>
+              {selectedTest.description}
+            </p>
+
+            <div style={{
+              background: 'var(--bg-section)',
+              borderRadius: 'var(--radius-md)',
+              padding: '1.5rem',
+              marginBottom: '2rem',
+            }}>
+              <p style={{
+                fontSize: '1rem',
+                color: 'var(--text-primary)',
+                lineHeight: '1.7',
+              }}>
+                {selectedTest.details}
+              </p>
+            </div>
+
+            <div style={{
+              background: 'linear-gradient(135deg, #FFF9E6 0%, #FFF5CC 100%)',
+              border: '2px solid #FFD93D',
+              borderRadius: 'var(--radius-md)',
+              padding: '1.5rem',
+              marginBottom: '2rem',
+            }}>
+              <p style={{
+                fontSize: '0.9375rem',
+                color: '#92400E',
+                lineHeight: '1.7',
+                margin: 0,
+              }}>
+                <strong>💡 Скоро:</strong> Интерактивная версия теста будет доступна в следующем обновлении. Пока вы можете использовать эти критерии для самостоятельной рефлексии.
+              </p>
+            </div>
+
+            <div style={{
+              display: 'flex',
+              gap: '1rem',
+              justifyContent: 'center',
+            }}>
+              <button
+                onClick={() => setSelectedTest(null)}
+                className="cta-button secondary"
+              >
+                Закрыть
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </main>
   );
 };

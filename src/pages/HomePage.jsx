@@ -1,4 +1,5 @@
 import { Link } from 'react-router';
+import './HomePage.css';
 
 const HomePage = () => {
   const features = [
@@ -60,9 +61,9 @@ const HomePage = () => {
 
       {/* About Section */}
       <section className="content-block">
-        <div className="content-container" style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
+        <div className="content-container home-about-container">
           <h2 className="content-h2">О проекте</h2>
-          <p className="content-paragraph" style={{ margin: '0 auto' }}>
+          <p className="content-paragraph">
             Наш проект создан для родителей дошкольников и основан на научных исследованиях влияния родительского отношения на эмоциональную регуляцию детей. Мы предлагаем практические инструменты, видеоматериалы и поддержку профессиональных психологов.
           </p>
         </div>
@@ -72,65 +73,23 @@ const HomePage = () => {
       <section className="content-block blockstyle-card">
         <div className="content-container">
           <h2 className="content-h2">Возможности платформы</h2>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '2rem',
-            marginTop: '3rem',
-          }}>
+          <div className="home-features-grid">
             {features.map(feature => (
               <Link
                 key={feature.id}
                 to={feature.link}
-                style={{
-                  background: 'var(--bg-card)',
-                  borderRadius: 'var(--radius-lg)',
-                  padding: '2rem',
-                  border: '2px solid var(--border-color)',
-                  transition: 'var(--transition)',
-                  textDecoration: 'none',
-                  display: 'block',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-8px)';
-                  e.currentTarget.style.boxShadow = 'var(--shadow-lg)';
-                  e.currentTarget.style.borderColor = 'var(--accent-color)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = 'none';
-                  e.currentTarget.style.borderColor = 'var(--border-color)';
-                }}
+                className="home-feature-card"
               >
-                <div style={{
-                  width: '80px',
-                  height: '80px',
-                  borderRadius: '50%',
-                  background: feature.color,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '2.5rem',
-                  marginBottom: '1.5rem',
-                  margin: '0 auto 1.5rem',
-                }}>
+                <div 
+                  className="home-feature-icon"
+                  style={{ background: feature.color }}
+                >
                   {feature.icon}
                 </div>
-                <h3 style={{
-                  fontSize: '1.25rem',
-                  fontWeight: '700',
-                  color: 'var(--text-primary)',
-                  marginBottom: '0.75rem',
-                  textAlign: 'center',
-                }}>
+                <h3 className="home-feature-title">
                   {feature.title}
                 </h3>
-                <p style={{
-                  fontSize: '0.9375rem',
-                  color: 'var(--text-secondary)',
-                  lineHeight: '1.6',
-                  textAlign: 'center',
-                }}>
+                <p className="home-feature-description">
                   {feature.description}
                 </p>
               </Link>
@@ -142,7 +101,7 @@ const HomePage = () => {
       {/* Benefits Section */}
       <section className="content-block blockstyle-accent">
         <div className="content-container">
-          <h2 className="content-h2" style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          <h2 className="content-h2 home-benefits-title">
             Почему это важно?
           </h2>
           <div className="content-list-large">
@@ -188,9 +147,9 @@ const HomePage = () => {
 
       {/* CTA Section */}
       <section className="content-block">
-        <div className="content-container" style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
+        <div className="content-container home-cta-container">
           <h2 className="content-h2">Начните прямо сейчас</h2>
-          <p className="content-paragraph" style={{ margin: '0 auto 2rem' }}>
+          <p className="content-paragraph home-cta-paragraph">
             Присоединяйтесь к сообществу осознанных родителей и получите доступ ко всем материалам и поддержке психологов
           </p>
           <div className="content-cta-buttons">

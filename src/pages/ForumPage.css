@@ -1,0 +1,639 @@
+/* Forum Page Styles */
+
+/* Question Form */
+.forum-form-section {
+  padding-top: 0;
+}
+
+.forum-form-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.forum-form-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-lg);
+  border: 2px solid var(--accent-color);
+}
+
+.forum-form-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.forum-form-subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Questions Section */
+
+/* Welcome Section */
+.forum-welcome {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.forum-welcome-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.forum-welcome-text {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.forum-welcome-text p {
+  margin-bottom: 1rem;
+}
+
+/* Rules Section */
+.forum-rules {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.forum-rules-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.forum-rules-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  border: 2px solid var(--accent-color);
+  box-shadow: var(--shadow-md);
+}
+
+.forum-rules-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+  text-align: center;
+}
+
+.forum-rules-intro {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.forum-rules-list {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  padding-left: 1.5rem;
+  list-style: disc;
+}
+
+/* Forum Sections Grid */
+.forum-sections {
+  padding-top: 2rem;
+}
+
+.forum-sections-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.forum-sections-title {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.forum-sections-subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.forum-sections-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.forum-section-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.forum-section-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-color);
+}
+
+.forum-section-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.forum-section-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.forum-section-description {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Ask Psychologist Section */
+.forum-ask-psychologist-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.forum-ask-psychologist-title {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.forum-ask-psychologist-intro {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.forum-ask-psychologist-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 2rem;
+}
+
+.forum-ask-psychologist-subtitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.forum-ask-psychologist-list {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  padding-left: 1.5rem;
+  list-style: disc;
+  margin-bottom: 1rem;
+}
+
+.forum-ask-psychologist-note {
+  font-size: 0.9375rem;
+  color: var(--text-light);
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.forum-ask-psychologist-btn-container {
+  text-align: center;
+}
+
+.forum-ask-psychologist-btn {
+  font-size: 1.125rem;
+  padding: 1rem 2.5rem;
+}
+
+/* Questions Section */
+.forum-questions-title {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.forum-questions-subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.forum-categories {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.forum-category-btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  border: 2px solid var(--border-color);
+}
+
+.forum-category-btn.active {
+  background: var(--accent-gradient);
+  color: var(--text-on-accent);
+  border: none;
+}
+
+.forum-category-btn:hover:not(.active) {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+.forum-questions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.forum-question-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+}
+
+.forum-question-card.has-answer {
+  border: 2px solid var(--accent-color);
+}
+
+.forum-question-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.forum-question-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.forum-question-category-badge {
+  display: inline-block;
+  padding: 0.375rem 0.875rem;
+  background: var(--bg-overlay);
+  border-radius: var(--radius-sm);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--accent-color);
+  margin-bottom: 0.75rem;
+}
+
+.forum-question-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.forum-question-meta {
+  font-size: 0.875rem;
+  color: var(--text-light);
+}
+
+.forum-question-meta-author {
+  font-weight: 600;
+}
+
+.forum-question-answer-badge {
+  padding: 0.5rem 1rem;
+  background: var(--accent-gradient);
+  color: white;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.forum-question-content {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.forum-question-stats {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.9375rem;
+  color: var(--text-light);
+}
+
+.forum-psychologist-answer {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background: var(--bg-section);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--accent-color);
+}
+
+.forum-psychologist-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.forum-psychologist-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--accent-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: white;
+}
+
+.forum-psychologist-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.forum-psychologist-date {
+  font-size: 0.8125rem;
+  color: var(--text-light);
+}
+
+.forum-psychologist-content {
+  font-size: 1rem;
+  color: var(--text-primary);
+  line-height: 1.7;
+}
+
+/* ================================
+   АДАПТИВНЫЕ СТИЛИ
+   ================================ */
+
+@media (max-width: 768px) {
+  /* Welcome Section */
+  .forum-welcome-text {
+    font-size: 1rem;
+  }
+
+  /* Rules */
+  .forum-rules-card {
+    padding: 1.5rem;
+  }
+
+  .forum-rules-title {
+    font-size: 1.25rem;
+  }
+
+  /* Sections */
+  .forum-sections-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .forum-section-card {
+    padding: 1.5rem;
+  }
+
+  .forum-section-icon {
+    font-size: 2.25rem;
+  }
+
+  .forum-section-title {
+    font-size: 1rem;
+  }
+
+  /* Psychologist Info */
+  .forum-psychologist-info-card {
+    padding: 1.5rem;
+  }
+
+  .forum-psychologist-info-title {
+    font-size: 1.125rem;
+  }
+
+  /* Question Form */
+  .forum-question-form-card {
+    padding: 1.5rem;
+  }
+
+  .forum-question-form-title {
+    font-size: 1.25rem;
+  }
+
+  /* Category Filters */
+  .forum-category-filter {
+    gap: 0.5rem;
+  }
+
+  .forum-category-btn {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+  }
+
+  /* Questions */
+  .forum-question-card {
+    padding: 1.5rem;
+  }
+
+  .forum-question-title {
+    font-size: 1.125rem;
+  }
+
+  .forum-question-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .forum-question-answer-badge {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+
+  /* Psychologist Answer */
+  .forum-psychologist-answer {
+    padding: 1.25rem;
+  }
+
+  .forum-psychologist-avatar {
+    width: 35px;
+    height: 35px;
+    font-size: 1.125rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Welcome Section */
+  .forum-welcome-text {
+    font-size: 0.9375rem;
+  }
+
+  /* Rules */
+  .forum-rules-card {
+    padding: 1.25rem;
+  }
+
+  .forum-rules-title {
+    font-size: 1.125rem;
+  }
+
+  .forum-rules-description,
+  .forum-rules-list {
+    font-size: 0.9375rem;
+  }
+
+  /* Sections */
+  .forum-sections-grid {
+    gap: 1rem;
+  }
+
+  .forum-section-card {
+    padding: 1.25rem;
+  }
+
+  .forum-section-icon {
+    font-size: 2rem;
+  }
+
+  .forum-section-title {
+    font-size: 0.9375rem;
+  }
+
+  .forum-section-description {
+    font-size: 0.875rem;
+  }
+
+  /* Psychologist Info */
+  .forum-psychologist-section-description {
+    font-size: 0.9375rem;
+  }
+
+  .forum-psychologist-info-card {
+    padding: 1.25rem;
+  }
+
+  .forum-psychologist-info-title {
+    font-size: 1rem;
+  }
+
+  .forum-psychologist-info-list,
+  .forum-psychologist-info-note {
+    font-size: 0.875rem;
+  }
+
+  /* Question Form */
+  .forum-question-form-card {
+    padding: 1.25rem;
+  }
+
+  .forum-question-form-title {
+    font-size: 1.125rem;
+  }
+
+  .forum-question-form-description {
+    font-size: 0.9375rem;
+  }
+
+  /* Category Filters */
+  .forum-category-filter {
+    gap: 0.375rem;
+  }
+
+  .forum-category-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.8125rem;
+  }
+
+  /* Questions */
+  .forum-questions-list {
+    gap: 1.25rem;
+  }
+
+  .forum-question-card {
+    padding: 1.25rem;
+  }
+
+  .forum-question-category-badge {
+    padding: 0.25rem 0.625rem;
+    font-size: 0.75rem;
+  }
+
+  .forum-question-title {
+    font-size: 1rem;
+  }
+
+  .forum-question-meta {
+    font-size: 0.8125rem;
+  }
+
+  .forum-question-content {
+    font-size: 0.9375rem;
+  }
+
+  .forum-question-stats {
+    gap: 1rem;
+    font-size: 0.875rem;
+    flex-wrap: wrap;
+  }
+
+  /* Psychologist Answer */
+  .forum-psychologist-answer {
+    padding: 1rem;
+  }
+
+  .forum-psychologist-avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .forum-psychologist-name {
+    font-size: 0.9375rem;
+  }
+
+  .forum-psychologist-date {
+    font-size: 0.75rem;
+  }
+
+  .forum-psychologist-content {
+    font-size: 0.9375rem;
+  }
+}
+

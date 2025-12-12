@@ -1,0 +1,405 @@
+/* InteractivePage.css */
+
+.interactive-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Info Notice */
+.info-notice {
+  background: linear-gradient(135deg, #FFF9E6 0%, #FFF5CC 100%);
+  border: 2px solid #FFD93D;
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.info-notice-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.info-notice-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.info-notice-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #D97706;
+  margin-bottom: 0.75rem;
+}
+
+.info-notice-text {
+  font-size: 1rem;
+  color: #92400E;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Scenario Card */
+.scenario-card {
+  border-radius: var(--radius-xl);
+  padding: 3rem;
+  margin-bottom: 3rem;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  border: 3px solid var(--accent-color);
+}
+
+.scenario-emoji {
+  font-size: 6rem;
+  margin-bottom: 1.5rem;
+}
+
+.scenario-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.scenario-description {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* Reactions Section */
+.reactions-section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.reactions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.reaction-button {
+  padding: 2rem 1.5rem;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: center;
+}
+
+.reaction-button:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: var(--shadow-lg);
+}
+
+.reaction-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.reaction-label {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Result Display */
+.result-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-xl);
+  padding: 3rem;
+  box-shadow: var(--shadow-lg);
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.result-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.result-emoji {
+  font-size: 6rem;
+  margin-bottom: 1rem;
+}
+
+.result-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.result-description {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+/* Info Blocks */
+.result-info-block {
+  background: var(--bg-section);
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 1.5rem;
+}
+
+.result-info-block.recommendation {
+  background: var(--bg-overlay);
+  margin-bottom: 2rem;
+}
+
+.result-info-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.result-info-text {
+  font-size: 1rem;
+  color: var(--text-primary);
+  line-height: 1.7;
+}
+
+/* Action Buttons */
+.result-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ================================
+   АДАПТИВНЫЕ СТИЛИ
+   ================================ */
+
+@media (max-width: 768px) {
+  /* Info Notice */
+  .info-notice {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .info-notice-icon {
+    font-size: 1.75rem;
+  }
+
+  .info-notice-title {
+    font-size: 1rem;
+  }
+
+  .info-notice-text {
+    font-size: 0.9375rem;
+  }
+
+  /* Scenario Card */
+  .scenario-card {
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .scenario-emoji {
+    font-size: 5rem;
+  }
+
+  .scenario-title {
+    font-size: 1.5rem;
+  }
+
+  .scenario-description {
+    font-size: 1rem;
+  }
+
+  /* Reactions */
+  .reactions-section-title {
+    font-size: 1.25rem;
+  }
+
+  .reactions-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .reaction-button {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .reaction-icon {
+    font-size: 2.5rem;
+  }
+
+  .reaction-label {
+    font-size: 1rem;
+  }
+
+  /* Result */
+  .result-card {
+    padding: 2rem;
+  }
+
+  .result-emoji {
+    font-size: 5rem;
+  }
+
+  .result-title {
+    font-size: 1.5rem;
+  }
+
+  .result-description {
+    font-size: 1rem;
+  }
+
+  .result-info-block {
+    padding: 1.25rem;
+  }
+
+  .result-info-title {
+    font-size: 0.9375rem;
+  }
+
+  .result-info-text {
+    font-size: 0.9375rem;
+  }
+
+  .result-actions {
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Info Notice */
+  .info-notice {
+    padding: 1rem 1.25rem;
+  }
+
+  .info-notice-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .info-notice-icon {
+    font-size: 1.5rem;
+  }
+
+  .info-notice-title {
+    font-size: 0.9375rem;
+  }
+
+  .info-notice-text {
+    font-size: 0.875rem;
+  }
+
+  /* Scenario Card */
+  .scenario-card {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 2px solid var(--accent-color);
+  }
+
+  .scenario-emoji {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+
+  .scenario-title {
+    font-size: 1.25rem;
+  }
+
+  .scenario-description {
+    font-size: 0.9375rem;
+  }
+
+  /* Reactions */
+  .reactions-section-title {
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .reactions-grid {
+    gap: 1rem;
+  }
+
+  .reaction-button {
+    padding: 1.25rem 1rem;
+  }
+
+  .reaction-button:hover {
+    transform: translateY(-4px) scale(1.02);
+  }
+
+  .reaction-icon {
+    font-size: 2.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .reaction-label {
+    font-size: 0.9375rem;
+  }
+
+  /* Result */
+  .result-card {
+    padding: 1.5rem;
+  }
+
+  .result-emoji {
+    font-size: 4rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .result-title {
+    font-size: 1.25rem;
+  }
+
+  .result-description {
+    font-size: 0.9375rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .result-info-block {
+    padding: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .result-info-block.recommendation {
+    margin-bottom: 1.5rem;
+  }
+
+  .result-info-title {
+    font-size: 0.875rem;
+    flex-wrap: wrap;
+  }
+
+  .result-info-text {
+    font-size: 0.875rem;
+  }
+
+  .result-actions {
+    gap: 0.5rem;
+    flex-direction: column;
+  }
+
+  .result-actions button {
+    width: 100%;
+  }
+}
+
